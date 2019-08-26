@@ -5,7 +5,7 @@ import SwipeCards from 'react-native-swipe-cards';
 import { connect } from 'react-redux';
 import Card from './Card';
 import NoMoreCards from './NoMoreCards';
-import {updateMin, updateMax, updateSwitch, updateProfile, updateCards} from '../actions';
+import {updateMin, updateMax, updateSwitch, updateProfile, updateCards, updateLength} from '../actions';
 
 const petsJson = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/pets.json';
 const settingsJson = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/settings.json';
@@ -17,7 +17,8 @@ class Search extends Component {
       this.state = {
         allPets: [],
         filteredPets: [],
-        outOfCards: false
+        outOfCards: false,
+        num: 0
       };
     }
     
@@ -76,6 +77,9 @@ class Search extends Component {
         type: card.type
       };
       this.props.cards.push(newPet);
+
+      this.setState({num : this.state.num + 1})
+      this.props.updateLength(this.state.num);
     }
 
 
@@ -111,5 +115,7 @@ const mapStateToProps = (state) => {
   return {ageMin, ageMax, animalToggle, profile, cards};
 };
 
-export default connect(mapStateToProps,{updateMin, updateMax, updateSwitch, updateProfile,updateCards})(Search);
+export default connect(mapStateToProps,{updateMin, 
+  updateMax, updateSwitch, updateProfile,
+  updateCards, updateLength})(Search);
 

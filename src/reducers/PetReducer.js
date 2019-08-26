@@ -3,14 +3,16 @@ import {UPDATE_MAX,
   UPDATE_MIN, 
   UPDATE_SWITCH, 
   UPDATE_PROFILE, 
-  UPDATE_CARDS} from '../actions/types';
+  UPDATE_CARDS,
+  UPDATE_LENGTH} from '../actions/types';
 
 const INITIAL_STATE = {
   animalToggle: false,
   ageMin: '0',
   ageMax: '0',
   profile: '',
-  cards: []
+  cards: [],
+  length: 1
 };
 
 const petReducer = (state = INITIAL_STATE, action) => {
@@ -25,6 +27,8 @@ const petReducer = (state = INITIAL_STATE, action) => {
       return {...state, profile: action.payload};
     case UPDATE_CARDS:
       return {...state, cards: action.payload};
+    case UPDATE_LENGTH:
+      return {...state, length: action.payload};
     default:
       return state;
   }

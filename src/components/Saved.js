@@ -6,9 +6,6 @@ import ListItem from './ListItem';
 
 class Saved extends Component {
 
-  state = {
-    refresh : false
-  }
 
   render() {
     return (
@@ -16,8 +13,7 @@ class Saved extends Component {
         <Text style={{ alignSelf: 'center'}}>Pull down to refresh</Text>
         <FlatList
          data = {this.props.cards}
-         refreshing = {this.state.refresh}
-         onRefresh = {() => this.setState({refresh: false})}
+         extraData = {this.props}
          renderItem = {({item}) => <ListItem pet={item}/>}
          keyExtractor = {item => String(item.id)}
         />
@@ -27,8 +23,8 @@ class Saved extends Component {
 };
 
 const mapStateToProps = (state) => {
-  const {id, cards} = state.filter;
-  return {id, cards};
+  const {length,cards} = state.filter;
+  return {length,cards};
 };
 
 export default connect(mapStateToProps)(Saved);

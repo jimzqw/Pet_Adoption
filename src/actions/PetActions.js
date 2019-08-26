@@ -3,7 +3,8 @@ import {UPDATE_MAX,
     UPDATE_MIN, 
     UPDATE_SWITCH, 
     UPDATE_PROFILE, 
-    UPDATE_CARDS} from './types';
+    UPDATE_CARDS,
+    UPDATE_LENGTH} from './types';
 
 export const updateMin = (value) => {
     return {
@@ -42,3 +43,10 @@ export const updateCards = (value) => {
     };   
 };
   
+
+export const updateLength = (value) => {
+    return {
+        type: UPDATE_LENGTH,
+        payload: value
+    };   
+};
